@@ -1,14 +1,14 @@
 'use strict';
 
-// const Person = function(firstName, birthYear){
-//   // instance property
-//   this.firstName = firstName;
-//   this.birthYear = birthYear;
+const Person = function(firstName, birthYear){
+  // instance property
+  this.firstName = firstName;
+  this.birthYear = birthYear;
 //   // never put method in the constructor
 //   // this.calcAge = function(){
 //   //   console.log(2037 - birthYear);
 //   // }
-// } 
+} 
 
 // const giorgio = new Person('Giorgio', 1991);
 // console.log(giorgio instanceof Person);
@@ -87,17 +87,17 @@
 
 
 // // class declares
-// class PersonCL {
-//   constructor(name, birthYear){
-//     this.name = name;
-//     this.birthYear = birthYear
-//   }
+class PersonCL {
+  constructor(name, birthYear){
+    this.name = name;
+    this.birthYear = birthYear
+  }
 
-//   calcAge(){
-//     console.log(2037 - this.birthYear);
-//   }
+  calcAge(){
+    console.log(2037 - this.birthYear);
+  }
 
-// }
+}
 
 // const gio = new PersonCL('Giorgina', 1950)
 // console.log(gio);
@@ -105,20 +105,82 @@
 
 // console.log(gio.__proto__ === PersonCL.prototype);
 
-const  account = {
-  owner: "jonas",
-  movements: [3, 545, 65, 54, 76 ],
+// const  account = {
+//   owner: "jonas",
+//   movements: [3, 545, 65, 54, 76 ],
 
-  get latest(){
-    return this.movements.slice(-1).pop();
-  },
+//   get latest(){
+//     return this.movements.slice(-1).pop();
+//   },
 
-  set latest(mov){
-     this.movements.push(mov);
+//   set latest(mov){
+//      this.movements.push(mov);
+//   }
+// }
+
+// console.log(account.latest);
+
+// account.latest = 40
+// console.log(account.movements);
+
+// Person.hey = function (){
+//   console.log('hey there');
+//   console.log(this);
+// }
+
+// Person.hey()
+
+// const PersonProto = {
+
+//   calcAge(){
+//     console.log(2037 - this.birthYear);
+//   },
+//   init(name, birthYear){
+//     this.name = name;
+//     this.birthYear = birthYear;
+
+//   },
+// }
+
+// const steven = Object.create(PersonProto)
+// steven.init("steve", 1900)
+// console.log(steven);
+
+// steven.calcAge()
+
+class Car {
+  constructor(make, speed){
+    this.make = make;
+    this.speed = speed;
   }
+
+  
+
+  accelerate(){
+    console.log(`the car is going at ${this.speed += 10} km/h`);
+  }
+
+  brake(){
+    console.log(`the car is going at ${this.speed -= 5} km/h`);
+  }
+
+  get speedUS (){
+    return this.speed / 1.6 
+  }
+
+  set speedUS(speed){
+    this.speed *= 1.6
+  }
+
+
 }
 
-console.log(account.latest);
+const ford = new Car("mustang", 120)
 
-account.latest = 40
-console.log(account.movements);
+console.log(ford.speedUS);
+ford.accelerate()
+ford.accelerate()
+ford.accelerate()
+ford.brake()
+ford.speedUS = 50
+console.log(ford.speedUS);
