@@ -229,45 +229,45 @@ class PersonCL {
 // console.log(mike instanceof Person);
 
 // CHALLENGE 3
-const Car = function(make, speed){
-    this.make = make;
-    this.speed = speed;
-  } 
+// const Car = function(make, speed){
+//     this.make = make;
+//     this.speed = speed;
+//   } 
   
-  Car.prototype.accelerate = function() {
-    console.log(`the car is going at ${this.speed += 10} km/h`);
-  }
+//   Car.prototype.accelerate = function() {
+//     console.log(`the car is going at ${this.speed += 10} km/h`);
+//   }
   
-  Car.prototype.brake = function() {
-    console.log(`the car is going at ${this.speed -= 5} km/h`);
-  }
+//   Car.prototype.brake = function() {
+//     console.log(`the car is going at ${this.speed -= 5} km/h`);
+//   }
   
 
-const Ev = function(make, speed, charge){
-  Car.call(this, make, speed)
-  this.charge = charge
-}
+// const Ev = function(make, speed, charge){
+//   Car.call(this, make, speed)
+//   this.charge = charge
+// }
 
-Ev.prototype = Object.create(Car.prototype)
+// Ev.prototype = Object.create(Car.prototype)
 
-Ev.prototype.chargeBattery = function(chargeTo){
-  this.charge = chargeTo;
-}
+// Ev.prototype.chargeBattery = function(chargeTo){
+//   this.charge = chargeTo;
+// }
 
-const tesla = new Ev('tesla', 120, 23)
+// const tesla = new Ev('tesla', 120, 23)
 
 
-Ev.prototype.accelerate = function(){
-    this.speed += 20;
-    this.charge -= 1;
-    console.log(`the car is going at ${this.speed} km/h with a charge of ${this.charge}`);
+// Ev.prototype.accelerate = function(){
+//     this.speed += 20;
+//     this.charge -= 1;
+//     console.log(`the car is going at ${this.speed} km/h with a charge of ${this.charge}`);
 
-  }
+//   }
 
-tesla.chargeBattery(20)
-console.log(tesla);
-tesla.accelerate()
-tesla.brake()
+// tesla.chargeBattery(20)
+// console.log(tesla);
+// tesla.accelerate()
+// tesla.brake()
 
 
 
@@ -279,3 +279,140 @@ tesla.brake()
 
 // tesla.chargeBattery(20)
 // tesla.accelerate()
+
+
+//  const PersonProto = {
+
+//     calcAge(){
+//       console.log(2037 - this.birthYear);
+//     },
+//     init(name, birthYear){
+//       this.name = name;
+//       this.birthYear = birthYear;
+  
+//     },
+//   }
+
+//   const steven = Object.create(PersonProto)
+
+//   const StudentProto = Object.create(PersonProto)
+
+//   StudentProto.init = function(firstName, birthYear, course){
+//       PersonProto.init.call(this, firstName, birthYear)
+//       this.course = course;
+//   }
+
+//   StudentProto.introduce = function(){
+//       console.log(`my name is ${this.firstName} and I study ${this.course}`);
+//     }
+//   const jay = Object.create(StudentProto)
+
+//   jay.init('jay', 2010, 'cs')
+//   jay.introduce();
+//   jay.calcAge();
+
+// public fields(property)
+// private fields(property)
+// public methods
+// private methods
+
+// class Account {
+//   // public fields
+//   locale = navigator.language;
+//   // private fields
+//   #movements = [];
+//   #pin;
+
+
+//   constructor(owner, currency, pin){
+//     this.owner = owner;
+//     this.currency= currency; 
+//     // protected property
+//     this.#pin = pin;
+//     // this._movements = [];
+//     // this.locale = navigator.language;
+//     console.log(`Thanks for opening an account, ${owner}`);
+//   }
+//   // publick interface
+
+//   getMovements(){
+//     return this.#movements;
+//   }
+//   deposit(value){
+//     this.#movements.push(value);
+//     return this
+//   }
+
+//   withdraw(value){
+//     this.deposit(-value); 
+//     return this
+
+//   }
+
+//   _approval(value){
+//     return true 
+//   }
+
+//   requestLoan(value){
+//     if (this._approval(value)) {
+//      this.deposit(value)
+//      console.log('loan approved');
+//     }   
+//     return this
+
+//   }
+// }
+
+// const acc1 = new Account('jonas', 'EUR', 1111 );
+
+// acc1.deposit(250);
+// acc1.withdraw(140);
+// acc1.requestLoan(1000)
+// console.log(acc1);
+
+
+// // the methods need to return the object for allowing method chaining
+// acc1.deposit(222).deposit(33).withdraw(22).requestLoan(54535).withdraw(4000)
+// console.log(acc1.getMovements());
+
+// ======================================
+class Car{
+  constructor(make, speed) {
+    
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10
+    console.log(`the car is going at ${this.speed} km/h`);
+    return this
+  }
+
+  brake() {
+    this.speed -= 5
+    console.log(`the car is going at ${this.speed} km/h`);
+    return this
+  }
+} 
+    
+   
+  
+  class Ev extends Car{
+    #charge;
+    constructor(make, speed, charge) {
+      super(make, speed)
+      this.#charge = charge;
+    }
+
+    chargeBattery(chargeTo){
+        this.#charge = chargeTo;
+        return this
+      }
+
+  }
+
+  const rivian = new Ev('rivian', 120, 23)
+console.log(rivian);
+  rivian.accelerate().brake().chargeBattery(90)
+console.log(rivian);

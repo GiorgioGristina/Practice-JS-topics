@@ -37,6 +37,3 @@ const poll = {
 
 pollButton.addEventListener('click', poll.registerNewAnswer.bind(poll) )
 // poll.registerNewAnswer.bind(poll)
-
-
-
